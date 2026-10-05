@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EvidenceSchema",
+  "description": "Schema for post-test evidence generated from Playwright execution and parsed by Laya classifier",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["test_id", "title", "actors", "module", "expected_result", "playwright_status", "actual"],
+    "properties": {
+      "test_id": {
+        "type": "string",
+        "description": "Unique test case identifier (e.g. TC-001)"
+      },
+      "title": {
+        "type": "string",
+        "description": "Short description of the test scenario"
+      },
+      "actors": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "User roles involved in this test (e.g. ['buyer', 'approver'])"
+      },
+      "module": {
+        "type": "string",
+        "description": "System module under test (e.g. Checkout, Authentication)"
+      },
+      "expected_result": {
+        "type": "string",
+        "description": "Expected outcome defined in the test specification"
+      },
+      "playwright_status": {
+        "type": "string",
+        "enum": ["passed", "failed", "timedOut", "skipped", "not_run"]
+      },
+      "actual": {
+        "type": "object",
+        "properties": {
+          "urls": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          },
+          "snippets": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "logs": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "error": {
+            "type": "string"
+          },
+          "duration_ms": {
+            "type": "number"
+          }
+        }
+      },
+      "laya_state_hint": {
+        "type": "string"
+      }
+    }
+  }
+}
