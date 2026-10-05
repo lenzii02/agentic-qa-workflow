@@ -1,60 +1,90 @@
 # Agentic QA Workflow Framework 🧪🤖
 
-> **Framework Penjaminan Mutu Berbasis AI-Augmented Quality Engineering (Human-in-the-Loop)**  
-> Dirancang agar setiap kali membangun fitur perangkat lunak (*software build*), AI Agent atau Software Engineer wajib membaca **PRD versi QA** sebelum mulai coding, lalu mengeksekusi siklus penjaminan mutu 5 tahap.
+> **Precision AI-Augmented QA Stack (Human-in-the-Loop)**  
+> Framework penjaminan mutu software modern berbasis integrasi 5 tools utama:  
+> **Extension Test Companion (BrowserStack AI) ➔ Playwright MCP (Status & Actual) ➔ Agent Skill (Coverage, Cross-Role, Rumus/Pajak, Bug Report) ➔ Laya Decision Model ➔ Google Sheets MCP**
 
 ---
 
-## 📌 Mengapa Framework Ini Diciptakan?
+## 🛠️ The 5-Pillar Tooling Stack
 
-Pada era AI coding, membuat kode dan ratusan test case otomatis (seperti via BrowserStack Companion atau AI test generator) sangatlah cepat. Namun timbul risiko besar:
-1. **False Sense of Security (Status Hijau Palsu)**: Robot Playwright sering memberi status `PASS` hanya karena elemen tombol berhasil diklik, padahal data di database belum tersimpan atau ada celah keamanan fatal (misal: password salah tetap redirect ke dasbor).
-2. **AI Hallucination & Test Bloat**: Ratusan skenario dangkal terbuat, tetapi aturan bisnis krusial (seperti pengecualian PPN 11%, batasan pagu anggaran, isolasi multi-peran) terlewat.
-3. **Kelelahan Uji Manual (QA Fatigue)**: Menguji manual 400+ skenario satu per satu menghabiskan waktu berminggu-minggu.
-
-**Solusi:** Framework ini menggabungkan kecepatan otomasi AI (80%) dengan ketelitian validasi manusia (20% pada titik risiko tinggi) menggunakan classifier cerdas **Laya**.
-
----
-
-## 🔄 Siklus 5 Tahap (The 5-Phase QA Loop)
+Framework ini bekerja dengan 5 komponen terintegrasi yang saling melengkapi:
 
 ```text
-┌────────────────────────────────────────────────────────────────────────┐
-│                   0. QA-DRIVEN REQUIREMENT & PRD                       │
-│  (Batasan Hak Akses, State Machine, Aturan PPN/Finansial, Kasus Negatif)│
-└───────────────────────────────────┬────────────────────────────────────┘
-                                    │
-                                    ▼
-┌────────────────────────────────────────────────────────────────────────┐
-│  Phase 1: Exploration & Drafting (BrowserStack Companion / AI)         │
-│  - Crawling journeys utama -> Ekstrak baseline DOM -> Draft Test Case  │
-└───────────────────────────────────┬────────────────────────────────────┘
-                                    │
-                                    ▼
-┌────────────────────────────────────────────────────────────────────────┐
-│  Phase 2: Automated Regression (Playwright CLI / Playwright MCP)       │
-│  - Jalankan ratusan skenario -> Tangkap logs/traces -> evidence.json   │
-└───────────────────────────────────┬────────────────────────────────────┘
-                                    │
-                                    ▼
-┌────────────────────────────────────────────────────────────────────────┐
-│  Phase 3: Agent Domain & Logic Audit (Agent Skill)                     │
-│  - Audit kepatuhan PPN (PP 49/2022), mitigasi bypass auth & sanitasi   │
-└───────────────────────────────────┬────────────────────────────────────┘
-                                    │
-                                    ▼
-┌────────────────────────────────────────────────────────────────────────┐
-│  Phase 4: Post-Test ML Classification (Laya Classifier)                │
-│  - Klasifikasi bukti: integration_success, auth_issue, state_desync    │
-│  - Triage otomatis: WAJIB MANUAL 🔴 | SAMPLING 🟡 | AUTO PASS 🟢        │
-└───────────────────────────────────┬────────────────────────────────────┘
-                                    │
-                                    ▼
-┌────────────────────────────────────────────────────────────────────────┐
-│  Phase 5: Human-in-the-Loop Validation (QA Engineer)                   │
-│  - Uji headed pada 20-30 TC kritis -> Bug Report standar CWE/OWASP     │
-└────────────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────────────────────┐
+│                             0. QA-DRIVEN PRD                                     │
+│          (Matriks Role Boundary, State Transitions, Aturan Rumus Pajak/Finansial)│
+└────────────────────────────────────────┬─────────────────────────────────────────┘
+                                         │
+                                         ▼
+┌──────────────────────────────────────────────────────────────────────────────────┐
+│ 1. Extension Test Companion (Otak BrowserStack)                                  │
+│    - Exploratory crawling cerdas langsung dari peramban                           │
+│    - Generate draf Test Cases (CSV) otomatis berbasis AI BrowserStack            │
+└────────────────────────────────────────┬─────────────────────────────────────────┘
+                                         │
+                                         ▼
+┌──────────────────────────────────────────────────────────────────────────────────┐
+│ 2. Playwright MCP (Status & Actual Result Collector)                             │
+│    - Menjalankan otomasi browser (headless/headed) via protokol MCP               │
+│    - Eksekusi regresi skala besar, tangkap Status (Pass/Fail) & Actual Evidence  │
+└────────────────────────────────────────┬─────────────────────────────────────────┘
+                                         │
+                                         ▼
+┌──────────────────────────────────────────────────────────────────────────────────┐
+│ 3. Agent Skill (Coverage, Cross-Testing, Rumus/Pajak, Bug Report)                │
+│    - Analisis Coverage Gap (skenario kritis yang belum ter-cover)                │
+│    - Eksekusi Cross-Role Testing (interaksi bertingkat antar-akun/peran)          │
+│    - Verifikasi Rumus Bisnis & PPN (BKP 11% vs Non-BKP 0% PP 49/2022)            │
+│    - Generate Bug Report terstandarisasi OWASP / CWE                             │
+└────────────────────────────────────────┬─────────────────────────────────────────┘
+                                         │
+                                         ▼
+┌──────────────────────────────────────────────────────────────────────────────────┐
+│ 4. Laya Decision Model (Post-Test ML Triage Engine)                              │
+│    - Evaluasi evidence.json: integration_success, auth_issue, state_desync       │
+│    - Triage otomatis: WAJIB QA MANUAL 🔴 | DISARANKAN SAMPLING 🟡 | AUTO PASS 🟢 │
+└────────────────────────────────────────┬─────────────────────────────────────────┘
+                                         │
+                                         ▼
+┌──────────────────────────────────────────────────────────────────────────────────┐
+│ 5. Google Sheets MCP (Automated Master Sync)                                     │
+│    - Sync hasil akhir evaluasi langsung ke Google Sheets master QA               │
+│    - Update status test case, PIC tester, evidence link, & log bug otomatis      │
+└──────────────────────────────────────────────────────────────────────────────────┘
 ```
+
+---
+
+## 🔄 Rincian Peran Tiap Tool dalam Workflow
+
+### 1. Extension Test Companion (Otak BrowserStack)
+- **Fungsi:** Menggantikan pencatatan skenario manual yang lambat.
+- **Cara Kerja:** Terpasang di browser, merekam interaksi pengguna, menganalisis struktur DOM, dan secara otomatis menyusun draf awal test case ke format CSV lengkap dengan precondition, langkah, dan ekspektasi.
+
+### 2. Playwright MCP (Status & Actual Evidence)
+- **Fungsi:** Mesin eksekusi otomatisasi browser handal via Model Context Protocol.
+- **Cara Kerja:** Menerima aksi pengujian, mengontrol peramban web, menangkap network payload, screenshot kegagalan, dan menghasilkan `Status` (Passed/Failed) beserta `Actual Result` yang objektif.
+
+### 3. Agent Skill (Coverage, Cross-Testing, Rumus, & Bug Reporting)
+- **Coverage Analysis:** Mendeteksi edge cases dan boundary yang belum tercakup oleh crawler awal.
+- **Cross-Testing Orchestration:** Menguji alur berantai multi-peran (misal: Aktor A submit produk ➔ Aktor B beli di katalog ➔ Aktor C approve pesanan).
+- **Audit Rumus & Perpajakan:** Memvalidasi kalkulasi matematika kompleks:
+  - Diskon promo & penyesuaian harga negosiasi.
+  - Validasi PPN kondisional: Barang Kena Pajak (11%) vs Bebas PPN (0% sesuai PP 49/2022 untuk buku pelajaran).
+  - Pembulatan desimal nilai transaksi belanja instansi.
+- **Standardized Bug Report:** Menerbitkan laporan defect berstandar industri dengan pemetaan CWE / OWASP.
+
+### 4. Laya Decision Model (Post-Test ML Triage Engine)
+- **Fungsi:** Filter cerdas untuk menghilangkan fenomena *false-pass* pada robot otomasi.
+- **Cara Kerja:** Menganalisis `evidence.json` dari Playwright dan Agent. Mengelompokkan hasil ke:
+  - 🔴 **WAJIB QA MANUAL**: Test berstatus Fail, celah keamanan (auth bypass / session leak), atau evidence tidak lengkap.
+  - 🟡 **DISARANKAN SAMPLING**: Transisi status antar-peran, kalkulasi angka/uang, dan ekspor file.
+  - 🟢 **AUTO PASS CUKUP**: UI layout dan navigasi dasar yang lolos tanpa anomali.
+
+### 5. Google Sheets MCP (Master QA Sync)
+- **Fungsi:** Integrasi pelaporan tanpa copy-paste manual.
+- **Cara Kerja:** Melalui tool `google-sheets-mcp`, hasil klasifikasi Laya dan status validasi QA langsung di-push ke Google Spreadsheet master project secara real-time.
 
 ---
 

@@ -1,11 +1,17 @@
-# Phase 1: Exploration & Initial Test Case Generation
+# Phase 1: Extension Test Companion (Otak BrowserStack)
 
 ## 1. Tujuan
-Memetakan seluruh antarmuka web, user journeys, elemen interaktif, dan menghasilkan draf awal Test Cases secara cepat menggunakan ekstensi peramban cerdas (BrowserStack Test Companion / AI Extension).
+Memetakan seluruh antarmuka web, user journeys, elemen interaktif, dan menghasilkan draf awal Test Cases secara cepat menggunakan **Extension Test Companion dengan otak BrowserStack AI**.
 
 ---
 
-## 2. Langkah Kerja
+## 2. Karakteristik Tool
+- **Nama Tool:** BrowserStack Test Companion Extension
+- **Platform:** Browser Extension (Chrome/Edge/Brave)
+- **Kekuatan Utama:**
+  - AI BrowserStack memahami struktur DOM, hierarki tombol, dan alur kerja aplikasi secara kontekstual.
+  - Merekam user journeys secara non-intrusif saat tester atau agen menavigasi aplikasi.
+  - Mengonversi aksi klik dan input menjadi draf test cases terstruktur seketika.
 
 1. **Aktivasi Companion / AI Crawler**:
    - Buka aplikasi web di lingkungan staging/dev.

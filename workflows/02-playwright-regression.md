@@ -1,11 +1,25 @@
-# Phase 2: Automated Regression & Evidence Harvesting
+# Phase 2: Playwright MCP (Status & Actual Result Collection)
 
 ## 1. Tujuan
-Mengeksekusi rangkaian tes regresi otomatis skala besar (ratusan test case) menggunakan Playwright CLI atau Playwright MCP, serta merekam evidence struktural yang dapat dianalisis pada tahap berikutnya.
+Mengeksekusi rangkaian tes regresi otomatis skala besar menggunakan **Playwright MCP (Model Context Protocol)** secara headless maupun headed, untuk mengumpulkan `Status` (Passed/Failed) dan `Actual Evidence` yang objektif dari peramban.
 
 ---
 
-## 2. Praktik Terbaik Penulisan Playwright Spec
+## 2. Peran Playwright MCP
+- **Protokol:** Model Context Protocol (MCP) server `playwright`
+- **Fungsi Utama:**
+  1. Mengontrol instance Chromium/WebKit/Firefox langsung dari AI Agent.
+  2. Menangkap **Status Eksekusi**: `passed`, `failed`, `timedOut`, `skipped`.
+  3. Merekam **Actual Result Nyata**:
+     - Current URL setelah navigasi/redirect.
+     - Cuplikan pesan teks aktual pada modal atau alert box.
+     - Network request status (200, 401, 403, 500).
+     - Browser console errors & warnings.
+     - DOM snapshots & screenshot path saat assertion gagal.
+
+---
+
+## 3. Praktik Terbaik Penulisan Playwright Spec
 
 1. **Struktur Modular per Peran / Modul:**
    ```text

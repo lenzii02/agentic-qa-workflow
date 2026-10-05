@@ -30,9 +30,25 @@ Jika anomali terkonfirmasi sebagai cacat sistem (bug), buat laporan menggunakan 
 
 ---
 
-## 4. Sinkronisasi ke Spreadsheet / Pelacak Tugas
+## 4. Sinkronisasi Otomatis via Google Sheets MCP
 
-Perbarui status test case pada Google Sheets master tracking:
-- Status `PASS`: Telah terverifikasi via otomasi atau lolos uji manual.
-- Status `FAIL`: Bug terkonfirmasi dan tiket defect telah dibuat.
-- Status `BLOCKED`: Terhalang bug blocker hulu (misal: gagal login sehingga fitur transaksi tidak dapat diuji).
+Gunakan **Google Sheets MCP** untuk mengunggah dan menyinkronkan seluruh hasil evaluasi tanpa copy-paste manual:
+1. **Konfigurasi MCP Server:**
+   Pastikan MCP server `google-sheets` terpasang di file konfigurasi agent (`mcp.json`):
+   ```json
+   {
+     "mcpServers": {
+       "google-sheets": {
+         "command": "node",
+         "args": ["D:/Magang/google-sheets-mcp/build/index.js"],
+         "env": {
+           "GOOGLE_SERVICE_ACCOUNT_KEY_PATH": "D:/Magang/google-sheets-mcp/service-account.json"
+         }
+       }
+     }
+   }
+   ```
+2. **Aksi Sinkronisasi MCP:**
+   - Agent memanggil tool `google-sheets.append_rows` atau `google-sheets.update_cells` untuk menulis baris hasil triage Laya.
+   - Kolom yang diupdate: `TC ID`, `Status`, `Actual Result`, `Laya Recommendation`, `PIC QA`, `Bug ID`, `Timestamp`.
+   - Menjamin bahwa dashboard tracking stakeholder selalu mencerminkan status pengujian terbaru secara real-time.

@@ -1,7 +1,7 @@
-# Phase 4: Laya AI/ML Post-Test Classification
+# Phase 4: Laya Decision Model (Post-Test ML Triage)
 
 ## 1. Konsep & Filosofi
-Laya adalah model ML klasifikasi post-test yang bertugas mengevaluasi `evidence.json`. Laya tidak menjalankan browser secara langsung, melainkan menganalisis jejak eksekusi, log peramban, dan perbandingan antara ekspektasi dan realita pengujian.
+**Laya Decision Model** adalah mesin pengambil keputusan post-test berbasis AI/ML (`convaiinnovations/laya`). Laya bertugas mengevaluasi `evidence.json` yang dihasilkan dari eksekusi Playwright MCP dan audit Agent Skill. Laya menganalisis jejak eksekusi, pesan log, HTTP status, dan perbandingan antara ekspektasi dan realita pengujian untuk menghilangkan fenomena *false-pass* (status hijau palsu).
 
 ---
 

@@ -1,52 +1,57 @@
 ---
 name: agentic-qa-workflow
-description: End-to-end AI-augmented QA workflow — from QA-driven PRD definition, Companion TC drafting, Playwright MCP regression, domain & tax audit, to Laya ML classification and human-in-the-loop validation.
-version: 1.0.0
+description: End-to-end AI-augmented QA workflow — Extension Test Companion (BrowserStack AI), Playwright MCP (status & actual), Agent Skill (coverage, cross-testing, rumus & bug report), Laya Decision Model, and Google Sheets MCP.
+version: 1.1.0
 author: lenzii02
 category: software-development
-tags: [qa, testing, playwright, laya, agentic-qa, test-automation, prd, quality-engineering]
+tags: [qa, testing, test-companion, browserstack, playwright-mcp, agent-skill, laya, gsheets-mcp]
 ---
 
 # Agentic QA Workflow Skill
 
-Skill ini memandu AI Agent (Hermes, Claude Code, Antigravity, OpenCode, Cursor) untuk mengeksekusi siklus penjaminan mutu perangkat lunak end-to-end dengan pendekatan **Hybrid AI-Augmented Quality Engineering**.
-
-Sebelum developer/agent menulis kode atau menjalankan build, agent **wajib membaca PRD & Requirement berbasis QA** yang tertera di repository ini.
+Skill ini memandu AI Agent (Hermes, Claude Code, Antigravity, OpenCode, Cursor) untuk mengeksekusi siklus penjaminan mutu software modern dengan integrasi 5 tools utama:
+1. **Extension Test Companion (Otak BrowserStack)**: Eksplorasi UI & draf skenario otomatis.
+2. **Playwright MCP**: Eksekutor peramban untuk menangkap `Status` (Pass/Fail) dan `Actual Evidence`.
+3. **Agent Skill**: Audit cakupan test (coverage), pengujian silang multi-peran (cross-testing), verifikasi rumus/PPN, dan format bug report standar OWASP/CWE.
+4. **Laya Decision Model**: Classifier AI/ML untuk membedakan false-pass dan menyeleksi test case yang wajib divalidasi manusia.
+5. **Google Sheets MCP**: Sinkronisasi otomatis data pengujian ke Google Sheets master.
 
 ---
 
 ## Prinsip Inti (Core Tenets)
 
 1. **Shift-Left QA via QA-Driven PRD**:
-   Kebutuhan software harus dirumuskan dari kacamata *testability*, batasan peran (role boundary), kalkulasi finansial (PPN/pajak), dan state transition sebelum implementasi dimulai.
-2. **Zero Blind Faith on Green Tests**:
-   Status `PASS` Playwright tidak menjamin ketiadaan bug logika atau celah keamanan (contoh: bypass password salah yang lolos karena sekadar redirect).
-3. **Evidence-Driven Post-Test Classification**:
-   Semua output otomatisasi harus diekstrak menjadi `evidence.json`, kemudian difilter oleh classifier cerdas (seperti **Laya**) untuk memisahkan hasil bersih dari potensi desinkronisasi data, kelemahan otorisasi, atau artifact ambigu.
+   Spesifikasi software wajib dirumuskan dari kacamata testability sebelum coding/build: role boundary matrix, transisi state machine, dan rumus bisnis finansial/PPN.
+2. **Zero Blind Faith on Green Automation**:
+   Status `PASS` Playwright tidak menjamin bebas bug. Perlu audit actual evidence, network payload, dan log anomali.
+3. **Evidence-Driven Post-Test Triage via Laya**:
+   Semua output otomatisasi diekstrak ke `evidence.json` lalu diproses oleh **Laya Decision Model** untuk memisahkan hasil bersih dari celah otorisasi, desync status, atau error tersembunyi.
 4. **Human-in-the-Loop as Final Validator**:
-   AI mengotomasi 80% beban repetitif (form filling, regression, evidence scraping, formatting); QA manual memvalidasi 20% area risiko tinggi (security, state transition, edge cases).
+   Otomasi menangani 80% beban repetitif; QA manual memverifikasi 20% area risiko tinggi hasil saringan Laya.
+5. **Automated Master Reporting**:
+   Hasil triage dan status bug langsung diunggah via Google Sheets MCP tanpa entri manual.
 
 ---
 
-## Siklus 5 Tahap (The 5-Phase Loop)
+## Siklus 5 Tahap (The 5-Pillar Loop)
 
 ```
-[PRD / Requirements QA Version]
-              │
-              ▼
-[Phase 1: Exploration & Drafting]  (BrowserStack Companion / AI Exploration)
-              │
-              ▼
-[Phase 2: Playwright Regression]   (Playwright CLI / MCP + Evidence Builder)
-              │
-              ▼
-[Phase 3: Domain & Logic Audit]    (Tax/PPN rules, Auth, State Transitions)
-              │
-              ▼
-[Phase 4: Laya AI/ML Filtering]    (Laya Classifier: Triage Wajib vs Sampling vs Auto Pass)
-              │
-              ▼
-[Phase 5: Human QA Validation]     (Targeted Manual QA, OWASP/CWE Bug Report, Sheets Sync)
+[QA-Driven PRD / Requirements Baseline]
+                  │
+                  ▼
+[1. Extension Test Companion] ➔ Otak BrowserStack untuk crawling & draf CSV skenario awal
+                  │
+                  ▼
+[2. Playwright MCP]           ➔ Eksekusi headless/headed, kumpulkan Status & Actual Result
+                  │
+                  ▼
+[3. Agent Skill]              ➔ Audit Coverage, Cross-Role testing, Rumus Pajak/PPN, Bug Report
+                  │
+                  ▼
+[4. Laya Decision Model]      ➔ ML Triage: WAJIB QA MANUAL 🔴 | SAMPLING 🟡 | AUTO PASS 🟢
+                  │
+                  ▼
+[5. Google Sheets MCP]        ➔ Push hasil evaluasi & bug log langsung ke Master Spreadsheet
 ```
 
 ---
